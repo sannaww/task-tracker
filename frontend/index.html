@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер задач</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Авторизация -->
+        <div id="auth-section" class="section">
+            <div class="auth-container">
+                <h2>Трекер задач</h2>
+                <div class="auth-form">
+                    <input type="text" id="username" placeholder="Имя пользователя" required>
+                    <input type="email" id="email" placeholder="Email (для регистрации)">
+                    <input type="password" id="password" placeholder="Пароль" required>
+                    <div class="auth-buttons">
+                        <button onclick="login()" class="btn-primary">Войти</button>
+                        <button onclick="register()" class="btn-secondary">Зарегистрироваться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Основное приложение -->
+        <div id="main-section" class="section hidden">
+            <header class="app-header">
+                <div class="header-content">
+                    <h2>Добро пожаловать, <span id="user-name"></span>!</h2>
+                    <button onclick="logout()" class="btn-logout">Выйти</button>
+                </div>
+            </header>
+
+            <div class="container">
+                <!-- Форма создания задачи -->
+                <div class="task-form-card">
+                    <h3>Новая задача</h3>
+                    <div class="form-group">
+                        <input type="text" id="task-title" placeholder="Название задачи *" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="task-description" placeholder="Описание (необязательно)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Срок выполнения *</label>
+                        <input type="datetime-local" id="task-due-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="share-users">Поделиться с пользователями:</label>
+                        <select id="share-users" multiple class="share-select">
+                            <!-- Users will be loaded here -->
+                        </select>
+                        <small>Удерживайте Ctrl для выбора нескольких пользователей</small>
+                    </div>
+                    <button onclick="createTask()" class="btn-primary">Создать задачу</button>
+                </div>
+
+                <!-- Список задач -->
+                <div class="tasks-section">
+                    <div class="tasks-header">
+                        <h3>Мои задачи</h3>
+                        <div class="tasks-controls">
+                            <select id="sort-select" onchange="loadTasks()" class="sort-select">
+                                <option value="created">По дате создания</option>
+                                <option value="due">По сроку выполнения</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="tasks-list" class="tasks-list">
+                        <!-- Tasks will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
